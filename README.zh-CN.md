@@ -1,10 +1,10 @@
-# ZTE U60 Pro（MU5250）触屏界面
+# Luya-Z 触屏界面
 
 [English](README.md) · **中文**
 
-中兴 U60 Pro（MU5250）前面板 3.5 寸触屏的开源替代界面：LVGL + FreeType，直接画到 DRM/KMS，编成一个静态 aarch64 程序，另附屏幕守护进程和设备端的进程监督、Wi-Fi 兜底脚本。
+**Luya-Z** 的一部分：5G 随身 Wi-Fi 前面板 3.5 寸触屏的开源替代界面：LVGL + FreeType，直接画到 DRM/KMS，编成一个静态 aarch64 程序，另附屏幕守护进程和设备端的进程监督、Wi-Fi 兜底脚本。
 
-> 社区项目，和中兴（ZTE）没有关系，风险自负。
+> **适用硬件：** 中兴 U60 Pro（MU5250）。社区项目，和中兴（ZTE）没有关系，风险自负。
 
 | 首页 | 蜂窝 | 出口（深色） | 系统 |
 |---|---|---|---|
@@ -16,9 +16,9 @@
 
 | 仓库 | 设备上的角色 |
 |---|---|
-| [manager](https://github.com/faying/zte-u60-pro-mu5250-manager) | `zte-agent`（:9090）+ 管理网页 + 装机包 |
-| **[touch-ui](https://github.com/faying/zte-u60-pro-mu5250-touch-ui)**（本仓库） | 前面板触屏界面、屏幕守护进程、进程监督与 Wi-Fi 兜底脚本 |
-| [data-service](https://github.com/faying/zte-u60-pro-mu5250-data-service) | `zwrt-datad`：本机数据服务（`127.0.0.1:9460` 的 `/v2/state` + SSE `/v2/events`） |
+| [manager](https://github.com/faying/luya-z-manager) | `zte-agent`（:9090）+ 管理网页 + 装机包 |
+| **[touch-ui](https://github.com/faying/luya-z-touch-ui)**（本仓库） | 前面板触屏界面、屏幕守护进程、进程监督与 Wi-Fi 兜底脚本 |
+| [data-service](https://github.com/faying/luya-z-data-service) | `zwrt-datad`：本机数据服务（`127.0.0.1:9460` 的 `/v2/state` + SSE `/v2/events`） |
 
 ```
 zwrt-datad :9460 ──▶ 触屏界面 ──(eSIM 页)──▶ zte-agent :9090 ──▶ lpac ──▶ eUICC 卡
@@ -31,16 +31,16 @@ zwrt-datad :9460 ──▶ 触屏界面 ──(eSIM 页)──▶ zte-agent :909
 
 - 底部 5 个标签，按「我想做什么」分：**首页 · 蜂窝 · Wi-Fi · 出口 · 系统**。首页大字是一句结论（网络正常 / 信号偏弱 / 漫游中）。
 - 蜂窝：载波、信号、网络模式、APN、SIM 与 eSIM 切换（经 zte-agent 调 lpac）。
-- 出口：出口 IP 与归属地；Tailscale。不带代理功能，要的话见 manager 仓库的 [docs/PROXY.md](https://github.com/faying/zte-u60-pro-mu5250-manager/blob/main/docs/PROXY.zh-CN.md)。
+- 出口：出口 IP 与归属地；Tailscale。不带代理功能，要的话见 manager 仓库的 [docs/PROXY.md](https://github.com/faying/luya-z-manager/blob/main/docs/PROXY.zh-CN.md)。
 - 系统：亮度、息屏、浅色 / 深色 / 自动，电池与负载、告警详情。
 - USB-C 口插上手机：和原厂屏幕一样问用来做什么——充电 + 上网（手机得到 USB 网卡）、18W 快速充电宝、网口配件——可以记住选择（系统 › 插入手机等设备时）。
 - 每次点击都有即时反馈；要确认的操作按两次。
 - **u60-uid**：屏幕唯一的主人。拉起或接管界面，崩了自动拉起并记告警；连续两次起不来就交还原厂界面（避免被固件升级成整机重启），长按屏幕右下角 3 秒回来。
-- `scripts/`：procd 监督（`supervise.sh` + `*.init`）、Wi-Fi 兜底看门狗兼告警短信（`u60-guard.sh`）、只读体检（`doctor.sh`）、配置备份（`config-backup.sh`）等，约定见 manager 仓库的 [docs/RELIABILITY.md](https://github.com/faying/zte-u60-pro-mu5250-manager/blob/main/docs/RELIABILITY.md)。
+- `scripts/`：procd 监督（`supervise.sh` + `*.init`）、Wi-Fi 兜底看门狗兼告警短信（`u60-guard.sh`）、只读体检（`doctor.sh`）、配置备份（`config-backup.sh`）等，约定见 manager 仓库的 [docs/RELIABILITY.md](https://github.com/faying/luya-z-manager/blob/main/docs/RELIABILITY.md)。
 
 ## 快速开始
 
-装到设备上请看 manager 仓库的 **[快速上手](https://github.com/faying/zte-u60-pro-mu5250-manager/blob/main/docs/GETTING-STARTED.zh-CN.md)**：本仓库编出的程序由那边的装机包带上设备，已装好的设备用 `./install.sh devui` 更新。
+装到设备上请看 manager 仓库的 **[快速上手](https://github.com/faying/luya-z-manager/blob/main/docs/GETTING-STARTED.zh-CN.md)**：本仓库编出的程序由那边的装机包带上设备，已装好的设备用 `./install.sh devui` 更新。
 
 ## 构建
 
@@ -66,7 +66,7 @@ scripts/build-docker.sh      # → out/u60pro-devui-lvgl.stripped（界面）、
 - [docs/HARDWARE.zh-CN.md](docs/HARDWARE.zh-CN.md)：屏幕、触摸、按键、背光等硬件接口
 - [docs/ESIM.zh-CN.md](docs/ESIM.zh-CN.md)：eSIM 切换页与 zte-agent 接口
 - [docs/SPEEDTEST.zh-CN.md](docs/SPEEDTEST.zh-CN.md)：可选测速后端
-- 设计规范：manager 仓库 [docs/DESIGN.md](https://github.com/faying/zte-u60-pro-mu5250-manager/blob/main/docs/DESIGN.md) §4
+- 设计规范：manager 仓库 [docs/DESIGN.md](https://github.com/faying/luya-z-manager/blob/main/docs/DESIGN.md) §4
 
 ## 致谢
 
