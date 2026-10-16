@@ -1,5 +1,7 @@
 # Luya-Z 触屏界面
 
+> **已归档（2026-10-16）。** 本仓库不再更新，代码已并入 [luya-z-manager](https://github.com/faying/luya-z-manager)（`touch-ui/`）。
+
 [English](README.md) · **中文**
 
 **Luya-Z** 的一部分：5G 随身 Wi-Fi 前面板 3.5 寸触屏的开源替代界面：LVGL + FreeType，直接画到 DRM/KMS，编成一个静态 aarch64 程序，另附屏幕守护进程和设备端的进程监督、Wi-Fi 兜底脚本。

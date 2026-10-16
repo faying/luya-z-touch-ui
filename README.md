@@ -1,5 +1,7 @@
 # Luya-Z Touch UI
 
+> **Archived (2026-10-16).** This repository is no longer updated. The code now lives in [luya-z-manager](https://github.com/faying/luya-z-manager) (`touch-ui/`).
+
 **English** · [中文](README.zh-CN.md)
 
 Part of **Luya-Z**: an open-source replacement UI for the 3.5-inch front-panel touchscreen of a 5G portable hotspot: LVGL + FreeType drawing straight to DRM/KMS, built as one static aarch64 binary, plus a screen owner daemon and on-device supervision and Wi-Fi fallback scripts.
